@@ -24,6 +24,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: |
-            005d9eb7-kr1-registry.container.cloud.toast.com/pickabook-server-prod/${{ github.repository_owner }}/my-container-test:latest
-            005d9eb7-kr1-registry.container.cloud.toast.com/pickabook-server-prod/${{ github.repository_owner }}/my-container-test:${{ env.RELEASE_VERSION }}
+          tags: pickabook-server-prod/my-container-test:latest
