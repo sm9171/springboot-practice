@@ -1,5 +1,16 @@
 FROM adoptopenjdk/openjdk11
-CMD ["./gradle", "clean", "package"]
-ARG JAR_FILE_PATH=target/*.jar
-COPY ${JAR_FILE_PATH} app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY gradlew .
+COPY gradle gladle
+COPY settings.gradle .
+COPY src src
+RUN chmod +x ./gradlew
+RUN ./gradlew bootJar
+
+FROM adoptopenjdk/openjdk11
+COPY --from=builder build/libs/*.jar app.jar
+
+ARG ENVIRONMENT
+ENV SPRING_PROFILES_ACTIVE=${ENVIRONMENT}
+
+EXPOSE 8080
+ENTRYPOINT["java","-jar","/app.jar"]
