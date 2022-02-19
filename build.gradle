@@ -30,7 +30,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+test {
 	systemProperty 'jasypt.encryptor.password', findProperty("jasypt.encryptor.password")
+	useJUnitPlatform()
 }
