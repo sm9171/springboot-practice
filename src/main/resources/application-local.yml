@@ -3,8 +3,8 @@ spring:
     location: local
   datasource:
     username: postgres
-    password: ENC(Bm/GUgfTbDQUGBgceLGrqA==)
-    url:  jdbc:postgresql://localhost:5432/postgres
+    password: ENC(kYCLgWk44py7i+LgGaiJld7E2opqKiw7)
+    url:  jdbc:postgresql://133.186.250.206:5432/postgres
   jpa:
     show-sql: true
     hibernate:
