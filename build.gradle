@@ -34,3 +34,8 @@ test {
 	systemProperty 'jasypt.encryptor.password', findProperty("jasypt.encryptor.password")
 	useJUnitPlatform()
 }
+
+bootRun {
+	String activeProfile = System.properties['spring.profiles.active']
+	systemProperty "spring.profiles.active", activeProfile
+}
