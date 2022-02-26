@@ -5,6 +5,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      JASYPT_PASSWORD: ${{ secrets.JASYPT_ENCRYPTOR_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -14,7 +16,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: boot with Gradle
-        run: gradle bootRun -Dspring.profiles.active=local -Pjasypt.encryptor.password= ${{ secrets.JASYPT_ENCRYPTOR_PASSWORD }}
+        run: gradle bootRun -Dspring.profiles.active=local
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to GitHub Container Registry
