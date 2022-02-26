@@ -31,7 +31,7 @@ jobs:
                 ${{ runner.os }}-gradle-
 
       - name: Build with Gradle # gradle로 빌드
-        run: ./gradlew clean build
+        run: ./gradlew clean build -Dspring.profiles.active=local
         shell: bash
 
       - name: Set up Docker Buildx
