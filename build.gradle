@@ -30,12 +30,16 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
-test {
-	systemProperty 'jasypt.encryptor.password', findProperty("jasypt.encryptor.password")
-	useJUnitPlatform()
-}
 
 bootRun {
 	String activeProfile = System.properties['spring.profiles.active']
+	String encryptorPassword = System.properties['jasypt.encryptor.password']
 	systemProperty "spring.profiles.active", activeProfile
+	systemProperty "jasypt.encryptor.password", encryptorPassword
+}
+
+test {
+	systemProperty 'spring.profiles.active', findProperty("spring.profiles.active")
+	systemProperty 'jasypt.encryptor.password', findProperty("jasypt.encryptor.password")
+	useJUnitPlatform()
 }
