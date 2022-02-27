@@ -17,6 +17,13 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Setup PostgreSQL
+        uses: Harmon758/postgresql-action@v1.0.0
+        with:
+          postgresql db: postgres
+          postgresql user: postgres
+          postgresql password: postgres
+
       - name: Grant execute permission for gradlew # 권한 추가
         run: chmod +x ./gradlew
         shell: bash
@@ -32,7 +39,7 @@ jobs:
                 ${{ runner.os }}-gradle-
 
       - name: Build with Gradle # gradle로 빌드
-        run: ./gradlew clean build -Dspring.profiles.active=local --debug
+        run: ./gradlew clean build -Dspring.profiles.active=ci --debug
         shell: bash
 
       - name: Set up Docker Buildx

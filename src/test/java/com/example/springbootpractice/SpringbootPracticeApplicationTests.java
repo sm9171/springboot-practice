@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest(properties = {
-		"jasypt.encryptor.password=sunday8turtle"})
-@ActiveProfiles("local")
+@SpringBootTest
+@ActiveProfiles("ci")
 class SpringbootPracticeApplicationTests {
 
 	@Test
