@@ -5,8 +5,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      JASYPT_PASSWORD: ${{ secrets.JASYPT_ENCRYPTOR_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -39,7 +37,7 @@ jobs:
                 ${{ runner.os }}-gradle-
 
       - name: Build with Gradle # gradle로 빌드
-        run: ./gradlew clean build -Dspring.profiles.active=ci --debug
+        run: ./gradlew clean build -Dspring.profiles.active=ci
         shell: bash
 
       - name: Set up Docker Buildx
