@@ -56,7 +56,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: pickabook-server-prod/my-container-test:latest
+          tags: 005d9eb7-kr1-registry.container.cloud.toast.com/pickabook-server-prod/my-container-test:latest
 
       - name: Get Current Time
         uses: 1466587594/get-current-time@v2
