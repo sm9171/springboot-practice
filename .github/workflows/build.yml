@@ -50,9 +50,10 @@ jobs:
             'ci'
             '${{ secrets.DB_USERNAME_CI }}'
             '${{ secrets.DB_PASSWORD_CI }}'
-            '$${{ secrets.DB_URL_CI }}'
+            '${{ secrets.DB_URL_CI }}'
             'true'
             'create'
+          env:
       - name: Build with Gradle # gradle로 빌드
         run: ./gradlew clean build -Dspring.profiles.active=ci
         shell: bash
