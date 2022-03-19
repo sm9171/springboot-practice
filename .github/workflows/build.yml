@@ -37,12 +37,12 @@ jobs:
                 ${{ runner.os }}-gradle-
       - name: Generate Environment Variables File for Production
         run: |
-          echo "spring.profiles.location = ci" >> src/main/resorces/application-ci.yml
-          echo "spring.datasource.username = $DB_USERNAME" >> src/main/resorces/application-ci.yml
-          echo "spring.datasource.username = $DB_PASSWORD" >> src/main/resorces/application-ci.yml
-          echo "spring.datasource.url = $DB_URL" >> src/main/resorces/application-ci.yml
-          echo "spring.jpa.show-sql = true" >> src/main/resorces/application-ci.yml
-          echo "spring.jpa.hibernate.ddl-auto = create" >> src/main/resorces/application-ci.yml
+          echo "spring.profiles.location = ci" >> ~/src/main/resorces/application-ci.yml
+          echo "spring.datasource.username = $DB_USERNAME" >> ~/src/main/resorces/application-ci.yml
+          echo "spring.datasource.username = $DB_PASSWORD" >> ~/src/main/resorces/application-ci.yml
+          echo "spring.datasource.url = $DB_URL" >> ~/src/main/resorces/application-ci.yml
+          echo "spring.jpa.show-sql = true" >> ~/src/main/resorces/application-ci.yml
+          echo "spring.jpa.hibernate.ddl-auto = create" >> ~/src/main/resorces/application-ci.yml
         env:
           DB_USERNAME: ${{ secrets.DB_USERNAME_CI }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD_CI }}
