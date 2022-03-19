@@ -35,6 +35,11 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
                 ${{ runner.os }}-gradle-
+
+      - name: Build with Gradle # gradle로 빌드
+        run: ./gradlew clean build -Dspring.profiles.active=ci
+        shell: bash
+
       - name: Write value to Properties-file
         uses: christian-draeger/write-properties@1.1.0
         with:
@@ -53,9 +58,6 @@ jobs:
             '${{ secrets.DB_URL_CI }}'
             'true'
             'create'
-      - name: Build with Gradle # gradle로 빌드
-        run: ./gradlew clean build -Dspring.profiles.active=ci
-        shell: bash
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1.6.0
