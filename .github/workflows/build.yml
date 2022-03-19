@@ -35,19 +35,18 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
                 ${{ runner.os }}-gradle-
-
       - name: Generate Environment Variables File for Production
-          run: |
+        run: |
           echo "spring.profiles.location = ci" >> src/main/resorces/application-ci.yml
           echo "spring.datasource.username = $DB_USERNAME" >> src/main/resorces/application-ci.yml
           echo "spring.datasource.username = $DB_PASSWORD" >> src/main/resorces/application-ci.yml
           echo "spring.datasource.url = $DB_URL" >> src/main/resorces/application-ci.yml
           echo "spring.jpa.show-sql = true" >> src/main/resorces/application-ci.yml
           echo "spring.jpa.hibernate.ddl-auto = create" >> src/main/resorces/application-ci.yml
-          env:
-            DB_USERNAME: ${{ secrets.DB_USERNAME_CI }}
-            DB_PASSWORD: ${{ secrets.DB_PASSWORD_CI }}
-            DB_URL: ${{ secrets.DB_URL_CI }}
+        env:
+          DB_USERNAME: ${{ secrets.DB_USERNAME_CI }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD_CI }}
+          DB_URL: ${{ secrets.DB_URL_CI }}
 
       - name: Build with Gradle # gradle로 빌드
         run: ./gradlew clean build -Dspring.profiles.active=ci
