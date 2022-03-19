@@ -38,17 +38,23 @@ jobs:
 
       - name: Generate Environment Variables File for Production
           run: |
-          spring:
-            profiles:
-              location: ci
-            datasource:
-              username: postgres
-              password: postgres
-              url: jdbc:postgresql://localhost:5432/postgres
-            jpa:
-              show-sql: true
-              hibernate:
-                ddl-auto: create
+            echo "
+            spring:
+              profiles:
+                location: ci
+              datasource:
+                username: $DB_USERNAME
+                password: $DB_PASSWORD
+                url:  $DB_URL
+              jpa:
+                show-sql: true
+                hibernate:
+                  ddl-auto: create
+            ">> src/main/resorces/application-ci.yml
+          env:
+            DB_USERNAME: ${{ secrets.DB_USERNAME_CI }}
+            DB_PASSWORD: ${{ secrets.DB_PASSWORD_CI }}
+            DB_URL: ${{ secrets.DB_URL_CI }}
 
       - name: Build with Gradle # gradle로 빌드
         run: ./gradlew clean build -Dspring.profiles.active=ci
