@@ -38,7 +38,7 @@ jobs:
       - name: Write value to Properties-file
         uses: christian-draeger/write-properties@1.1.0
         with:
-          path: '/github/workspace/src/main/resources/application-ci.properties'
+          path: './src/main/resources/application-ci.properties'
           property: |
             'spring.profiles.location'
             'spring.datasource.username'
@@ -53,7 +53,6 @@ jobs:
             '${{ secrets.DB_URL_CI }}'
             'true'
             'create'
-          env:
       - name: Build with Gradle # gradle로 빌드
         run: ./gradlew clean build -Dspring.profiles.active=ci
         shell: bash
