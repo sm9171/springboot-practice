@@ -36,28 +36,17 @@ jobs:
           restore-keys: |
                 ${{ runner.os }}-gradle-
 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@master
+        with:
+          remote: true
+
       - name: Build with Gradle # gradle로 빌드
         run: ./gradlew clean build -Dspring.profiles.active=ci
         shell: bash
-
-      - name: Write value to Properties-file
-        uses: christian-draeger/write-properties@1.1.0
-        with:
-          path: './src/main/resources/application-ci.properties'
-          property: |
-            'spring.profiles.location'
-            'spring.datasource.username'
-            'spring.datasource.password'
-            'spring.datasource.url'
-            'spring.jpa.show-sql'
-            'spring.jpa.hibernate.ddl-auto'
-          value: |
-            'ci'
-            '${{ secrets.DB_USERNAME_CI }}'
-            '${{ secrets.DB_PASSWORD_CI }}'
-            '${{ secrets.DB_URL_CI }}'
-            'true'
-            'create'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1.6.0
