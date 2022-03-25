@@ -36,6 +36,5 @@ bootRun {
 }
 
 test {
-	systemProperty 'spring.profiles.active', findProperty("spring.profiles.active")
 	useJUnitPlatform()
 }
