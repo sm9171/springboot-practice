@@ -28,8 +28,18 @@ jobs:
         run: chmod +x ./gradlew
         shell: bash
 
+      - name: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+                ${{ runner.os }}-gradle-
+
       - name: Build with Gradle # gradle로 빌드
-        run: ./gradlew clean build -Dspring.profiles.active=ci
+        run: ./gradlew clean build -Dspring.profiles.active=ci --info
         shell: bash
 
       - name: Set up Docker Buildx
