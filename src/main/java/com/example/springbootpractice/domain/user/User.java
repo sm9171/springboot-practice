@@ -23,4 +23,24 @@ public class User {
 
     @Embedded
     private Password password;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public UserName getName() {
+        return profile.getUserName();
+    }
+
+    String getBio() {
+        return profile.getBio();
+    }
+
+    Image getImage() {
+        return profile.getImage();
+    }
 }
